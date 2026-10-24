@@ -817,9 +817,8 @@
     .summary-card {
       --tilt-x: 0deg; --tilt-y: 0deg;
       position: relative; isolation: isolate;
-      display: grid; grid-template-columns: minmax(0, 1.38fr) minmax(280px, .82fr);
-      align-items: center; gap: clamp(19px, 3vw, 40px);
-      width: min(1260px, 100%); padding: clamp(20px, 3.1vw, 42px);
+      display: block;
+      width: min(1120px, 100%); padding: clamp(22px, 4vw, 48px);
       overflow: hidden; text-align: left;
       border: 1px solid rgba(255, 255, 255, .86); border-radius: clamp(24px, 3vw, 38px);
       background: linear-gradient(135deg, rgba(255,255,255,.73), rgba(239,250,255,.49));
@@ -829,7 +828,7 @@
       transform: perspective(1500px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
       transition: transform .2s ease-out, box-shadow .25s ease;
     }
-    .summary-copy { position: relative; z-index: 2; }
+    .summary-copy { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; }
     .summary-badge {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 8px 14px; border: 1px solid rgba(255,255,255,.92); border-radius: 999px;
@@ -860,27 +859,6 @@
       box-shadow: 0 7px 18px rgba(39,106,110,.12), inset 0 1px 0 white;
       font-size: .72rem; letter-spacing: .075em;
     }
-    .summary-visual {
-      position: relative; z-index: 2; min-width: 0;
-      transform: translate3d(var(--visual-x, 0px), var(--visual-y, 0px), 18px);
-      transition: transform .22s ease-out;
-      transform-style: preserve-3d;
-    }
-    .summary-visual > img {
-      display: block; width: 100%; height: clamp(300px, 57vh, 570px);
-      object-fit: cover; object-position: 56% center;
-      border: 1px solid rgba(255,255,255,.95); border-radius: 27px;
-      box-shadow: 0 18px 42px rgba(24,74,83,.24), 0 0 0 7px rgba(255,255,255,.2), inset 0 1px 0 white;
-      transition: transform .35s ease, filter .35s ease;
-    }
-    .summary-card:hover .summary-visual > img { filter: saturate(1.05); }
-    .summary-visual-caption {
-      position: absolute; right: 12px; bottom: 12px; left: 12px;
-      padding: 11px 13px; border: 1px solid rgba(255,255,255,.8); border-radius: 15px;
-      color: #fff; background: rgba(22,64,75,.35); text-align: center;
-      -webkit-backdrop-filter: blur(15px) saturate(1.25); backdrop-filter: blur(15px) saturate(1.25);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.5); font-size: .82rem; font-weight: 900;
-    }
     .summary-bubble {
       position: absolute; z-index: 3; display: block; pointer-events: none;
       border: 1px solid rgba(255,255,255,.92); border-radius: 50%;
@@ -908,17 +886,15 @@
     @keyframes summaryBubbleFloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -9px; } }
     @media (max-width: 760px) {
       .summary-section.view-screen.active { align-items: flex-start; padding: 13px; }
-      .summary-card { grid-template-columns: 1fr; gap: 18px; padding: 21px 17px; }
+      .summary-card { padding: 21px 17px; }
       .summary-copy h2 { margin: 12px 0; }
       .summary-copy p { font-size: .88rem; line-height: 1.48; }
-      .summary-visual { width: min(100%, 460px); margin: 0 auto; }
-      .summary-visual > img { height: clamp(250px, 43vh, 390px); object-position: 56% 42%; }
       .summary-bubble.bubble-a { top: 43%; left: 74%; }
       .summary-bubble.bubble-b { bottom: 5%; }
     }
     @media (prefers-reduced-motion: reduce) {
       .summary-bubble, .summary-visual-bubble { animation: none !important; }
-      .summary-card, .summary-visual { transition: none !important; }
+      .summary-card { transition: none !important; }
     }
     /* Paparan alu-aluan dengan panel kaca dan buih lutsinar */
     .welcome-section.view-screen.active {
@@ -937,9 +913,9 @@
     .welcome-stage {
       --welcome-tilt-x: 0deg; --welcome-tilt-y: 0deg;
       position: relative; isolation: isolate;
-      display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(310px, .88fr);
-      align-items: center; gap: clamp(18px, 2.8vw, 34px);
-      width: min(1280px, 100%); padding: clamp(22px, 3.2vw, 42px);
+      display: grid; grid-template-columns: minmax(0, 1fr);
+      align-items: center; gap: clamp(18px, 2.8vw, 30px);
+      width: min(1120px, 100%); padding: clamp(22px, 3.2vw, 42px);
       border: 1px solid rgba(255,255,255,.88); border-radius: clamp(25px, 3vw, 40px);
       overflow: hidden; background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(236,249,255,.48));
       -webkit-backdrop-filter: blur(25px) saturate(1.5); backdrop-filter: blur(25px) saturate(1.5);
@@ -947,7 +923,8 @@
       transform: perspective(1500px) rotateX(var(--welcome-tilt-x)) rotateY(var(--welcome-tilt-y));
       transition: transform .2s ease-out, box-shadow .25s ease;
     }
-    .welcome-copy, .welcome-art, .welcome-contents { position: relative; z-index: 2; }
+    .welcome-copy, .welcome-contents { position: relative; z-index: 2; }
+    .welcome-copy { max-width: 1000px; margin: 0 auto; text-align: center; }
     .welcome-eyebrow {
       display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px;
       border: 1px solid rgba(255,255,255,.94); border-radius: 999px;
@@ -956,7 +933,7 @@
       font-size: .72rem; font-weight: 1000; letter-spacing: .1em;
     }
     .welcome-copy h1 {
-      max-width: 690px; margin: 17px 0 14px; color: #194e59;
+      max-width: 900px; margin: 17px auto 14px; color: #194e59;
       font-size: clamp(2rem, 4.3vw, 3.55rem); line-height: .99; letter-spacing: -.045em;
       text-shadow: 0 2px 0 rgba(255,255,255,.92), 0 7px 20px rgba(29,97,110,.13);
     }
@@ -964,7 +941,7 @@
       display: block; margin-top: 8px; color: #136c70;
       text-shadow: 0 2px 0 white, 0 0 18px rgba(255,255,255,.85);
     }
-    .welcome-copy > p { max-width: 630px; margin: 0; color: #3b6268; font-size: clamp(.91rem, 1.2vw, 1.06rem); font-weight: 700; line-height: 1.55; }
+    .welcome-copy > p { max-width: 720px; margin: 0 auto; color: #3b6268; font-size: clamp(.91rem, 1.2vw, 1.06rem); font-weight: 700; line-height: 1.55; }
     .welcome-promise {
       display: inline-flex; align-items: center; gap: 8px; margin-top: 19px; padding: 10px 15px;
       border: 1px solid rgba(255,255,255,.94); border-radius: 15px;
@@ -972,32 +949,8 @@
       box-shadow: 0 8px 20px rgba(42,105,113,.12), inset 0 1px 0 white;
       font-size: .78rem; font-weight: 1000; letter-spacing: .07em;
     }
-    .welcome-art {
-      --art-x: 0px; --art-y: 0px;
-      position: relative; min-width: 0; transform: translate3d(var(--art-x), var(--art-y), 18px);
-      transform-style: preserve-3d; transition: transform .22s ease-out;
-    }
-    .welcome-art::before {
-      content: ""; position: absolute; z-index: -1; inset: 9% 3%; border-radius: 32px;
-      background: linear-gradient(135deg, rgba(109,226,232,.58), rgba(255,194,224,.54), rgba(255,221,117,.48));
-      filter: blur(25px); opacity: .9;
-    }
-    .welcome-art > img {
-      display: block; width: 100%; height: clamp(250px, 38vh, 365px); object-fit: cover; object-position: 53% center;
-      border: 1px solid rgba(255,255,255,.96); border-radius: 26px;
-      box-shadow: 0 18px 42px rgba(24,74,83,.23), 0 0 0 7px rgba(255,255,255,.22);
-      transition: filter .3s ease, transform .3s ease;
-    }
-    .welcome-art-label {
-      position: absolute; right: 11px; bottom: 11px; left: 11px; padding: 10px 12px;
-      border: 1px solid rgba(255,255,255,.86); border-radius: 14px; color: white;
-      background: rgba(22,64,75,.36); box-shadow: inset 0 1px 0 rgba(255,255,255,.48);
-      -webkit-backdrop-filter: blur(14px) saturate(1.3); backdrop-filter: blur(14px) saturate(1.3);
-      cursor: pointer; font: inherit; text-align: center; font-size: .72rem; font-weight: 1000; letter-spacing: .1em;
-      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-    }
-    .welcome-art-label:hover, .welcome-art-label:focus-visible { transform: translateY(-3px); background: rgba(22,64,75,.52); box-shadow: inset 0 1px 0 rgba(255,255,255,.65), 0 8px 20px rgba(20,65,75,.2); outline: 2px solid rgba(255,255,255,.9); outline-offset: 2px; }
-    .welcome-contents { grid-column: 1 / -1; }
+    .welcome-start-button { margin-top: 18px; padding: 14px 22px; border-radius: 17px; letter-spacing: .04em; }
+    .welcome-contents { width: 100%; }
     .welcome-contents-heading { display: flex; align-items: center; gap: 9px; margin: 0 0 12px 2px; color: #28575d; }
     .welcome-contents-heading > span { font-size: 1.2rem; }
     .welcome-contents-heading strong { font-size: 1.02rem; }
@@ -1054,11 +1007,8 @@
     }
     @media (max-width: 760px) {
       .welcome-section.view-screen.active { align-items: flex-start; padding: 12px; }
-      .welcome-stage { grid-template-columns: 1fr; gap: 17px; padding: 20px 15px; border-radius: 26px; }
+      .welcome-stage { gap: 17px; padding: 20px 15px; border-radius: 26px; }
       .welcome-copy h1 { margin: 12px 0; font-size: clamp(1.8rem, 8vw, 2.65rem); }
-      .welcome-art { width: min(100%, 480px); margin: 0 auto; }
-      .welcome-art > img { height: clamp(210px, 34vh, 300px); object-position: 53% 43%; }
-      .welcome-contents { grid-column: 1; }
       .welcome-contents-heading { flex-wrap: wrap; }
       .welcome-contents-heading small { flex-basis: 100%; margin-left: 31px; }
       .welcome-journey { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
@@ -1068,7 +1018,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .welcome-bubble { animation: none !important; }
-      .welcome-stage, .welcome-art, .welcome-journey-card { transition: none !important; }
+      .welcome-stage, .welcome-journey-card { transition: none !important; }
     }
     /* Kuiz kaca berlapis dengan hiasan 3D yang tidak menutup kandungan */
     .quiz-section.view-screen.active {
@@ -1176,10 +1126,7 @@
           <p>Ikuti perjalanan Zariq dan temui cara mudah untuk menjadi lebih sihat, cergas dan bersemangat setiap hari.</p>
           <div class="welcome-promise"><span aria-hidden="true">✨</span> Aktif · Sihat · Berdaya Saing</div>
         </div>
-        <div class="welcome-art">
-          <img src="assets/hero-misi-sihat.png" alt="" loading="lazy">
-          <button type="button" class="welcome-art-label" id="welcomeComicButton" aria-label="Misi kita bermula di sini. Buka komik.">MISI KITA BERMULA DI SINI!　→</button>
-        </div>
+        <button type="button" class="button button-primary welcome-start-button" id="welcomeComicButton" aria-label="Misi kita bermula di sini. Buka komik.">MISI KITA BERMULA DI SINI!　→</button>
         <div class="welcome-contents">
           <div class="welcome-contents-heading"><span>🧭</span><strong>Jom teroka isi kandungan</strong><small>Ikut langkah demi langkah</small></div>
           <div class="welcome-journey">
@@ -1290,10 +1237,6 @@
           <p>Selain itu, kuiz interaktif yang mengandungi 15 soalan berfungsi untuk menguji kefahaman murid terhadap maklumat yang disampaikan melalui komik dan poster. Pendekatan multimedia ini menjadikan pembelajaran lebih menarik, interaktif dan mudah difahami, di samping menggalakkan murid berfikir serta mengaplikasikan pengetahuan dalam kehidupan sebenar. Amalan seperti memilih makanan berkhasiat, minum air kosong secukupnya, mendapatkan tidur yang mencukupi, melakukan aktiviti fizikal secara konsisten dan memberikan sokongan kepada rakan perlu dijadikan sebahagian daripada rutin harian. Kesimpulannya, kempen ini bukan sahaja bertujuan meningkatkan kesedaran tentang kepentingan kesihatan, malah memupuk disiplin, semangat kerjasama dan tanggungjawab terhadap kesejahteraan diri serta komuniti demi melahirkan generasi yang aktif, sihat dan berdaya saing.</p>
           <div class="summary-tagline"><span>✨</span><strong>AKTIF · SIHAT · BERDAYA SAING</strong><span>✨</span></div>
         </div>
-        <div class="summary-visual">
-          <img src="assets/hero-misi-sihat.png" alt="Zariq dan Fariz berlari dengan galakan Cikgu Aisyah dalam suasana sekolah yang ceria." loading="lazy">
-          <div class="summary-visual-caption">Misi kecil, perubahan besar! 🏃‍♂️</div>
-        </div>
       </article>
     </section>
 
@@ -1368,15 +1311,12 @@
     const welcomeStage = document.getElementById("welcomeStage");
     if (welcomeStage && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
       const welcomeBubbles = welcomeStage.querySelectorAll(".welcome-bubble");
-      const welcomeArt = welcomeStage.querySelector(".welcome-art");
       welcomeStage.addEventListener("pointermove", function(event) {
         const bounds = welcomeStage.getBoundingClientRect();
         const horizontal = (event.clientX - bounds.left) / bounds.width - .5;
         const vertical = (event.clientY - bounds.top) / bounds.height - .5;
         welcomeStage.style.setProperty("--welcome-tilt-y", (horizontal * 2.2) + "deg");
         welcomeStage.style.setProperty("--welcome-tilt-x", (vertical * -1.8) + "deg");
-        welcomeArt.style.setProperty("--art-x", (horizontal * -8) + "px");
-        welcomeArt.style.setProperty("--art-y", (vertical * -7) + "px");
         welcomeBubbles.forEach(function(bubble, index) {
           const distance = (index + 1) * 8;
           bubble.style.setProperty("--bubble-x", (horizontal * distance) + "px");
@@ -1386,8 +1326,6 @@
       welcomeStage.addEventListener("pointerleave", function() {
         welcomeStage.style.setProperty("--welcome-tilt-x", "0deg");
         welcomeStage.style.setProperty("--welcome-tilt-y", "0deg");
-        welcomeArt.style.setProperty("--art-x", "0px");
-        welcomeArt.style.setProperty("--art-y", "0px");
         welcomeBubbles.forEach(function(bubble) {
           bubble.style.setProperty("--bubble-x", "0px");
           bubble.style.setProperty("--bubble-y", "0px");
@@ -1403,14 +1341,10 @@
         const vertical = (event.clientY - bounds.top) / bounds.height - .5;
         summaryCard.style.setProperty("--tilt-y", (horizontal * 2.4) + "deg");
         summaryCard.style.setProperty("--tilt-x", (vertical * -2.1) + "deg");
-        summaryCard.style.setProperty("--visual-x", (horizontal * -7) + "px");
-        summaryCard.style.setProperty("--visual-y", (vertical * -7) + "px");
       });
       summaryCard.addEventListener("pointerleave", function() {
         summaryCard.style.setProperty("--tilt-x", "0deg");
         summaryCard.style.setProperty("--tilt-y", "0deg");
-        summaryCard.style.setProperty("--visual-x", "0px");
-        summaryCard.style.setProperty("--visual-y", "0px");
       });
     }
 
